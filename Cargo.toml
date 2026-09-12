@@ -44,11 +44,11 @@ git = "https://github.com/pop-os/cosmic-idle"
 
 [workspace.dependencies.cosmic-panel-config]
 git = "https://github.com/ReCosmicLabs/cosmic-panel"
-branch = "recosmic"
+branch = "main"
 
 [workspace.dependencies.cosmic-app-list-config]
 git = "https://github.com/ReCosmicLabs/cosmic-applets"
-branch = "recosmic"
+branch = "main"
 
 [workspace.dependencies.cosmic-randr-shell]
 git = "https://github.com/pop-os/cosmic-randr"

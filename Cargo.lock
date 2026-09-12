@@ -1356,7 +1356,7 @@ dependencies = [
 [[package]]
 name = "cosmic-app-list-config"
 version = "1.0.15"
-source = "git+https://github.com/ReCosmicLabs/cosmic-applets?branch=recosmic#bc0f282d2a0afd71634a186e4d3fcb5850a76b1c"
+source = "git+https://github.com/ReCosmicLabs/cosmic-applets?branch=main#1707310a5e52cf175d2fd6a38e7ab90c79d9e695"
 dependencies = [
  "libcosmic",
  "serde",
@@ -1476,7 +1476,7 @@ dependencies = [
 [[package]]
 name = "cosmic-panel-config"
 version = "0.1.0"
-source = "git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic#e39146fc9f1320dfb7c1ec41906e7e99cebc5b0e"
+source = "git+https://github.com/ReCosmicLabs/cosmic-panel?branch=main#e39146fc9f1320dfb7c1ec41906e7e99cebc5b0e"
 dependencies = [
  "anyhow",
  "cosmic-config",
@@ -1484,7 +1484,7 @@ dependencies = [
  "smithay-client-toolkit",
  "tracing",
  "wayland-protocols-wlr",
- "xdg-shell-wrapper-config 0.1.0 (git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic)",
+ "xdg-shell-wrapper-config 0.1.0 (git+https://github.com/ReCosmicLabs/cosmic-panel?branch=main)",
 ]
 
 [[package]]
@@ -1556,7 +1556,7 @@ dependencies = [
  "cosmic-config",
  "cosmic-idle-config",
  "cosmic-mime-apps",
- "cosmic-panel-config 0.1.0 (git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic)",
+ "cosmic-panel-config 0.1.0 (git+https://github.com/ReCosmicLabs/cosmic-panel?branch=main)",
  "cosmic-protocols",
  "cosmic-randr",
  "cosmic-randr-shell",
@@ -9082,7 +9082,7 @@ checksum = "2fb433233f2df9344722454bc7e96465c9d03bff9d77c248f9e7523fe79585b5"
 [[package]]
 name = "xdg-shell-wrapper-config"
 version = "0.1.0"
-source = "git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic#e39146fc9f1320dfb7c1ec41906e7e99cebc5b0e"
+source = "git+https://github.com/ReCosmicLabs/cosmic-panel?branch=main#e39146fc9f1320dfb7c1ec41906e7e99cebc5b0e"
 dependencies = [
  "serde",
  "wayland-protocols-wlr",
