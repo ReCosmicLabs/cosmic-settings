@@ -430,6 +430,7 @@ pub enum Message {
     SideInset(u16),
     WingInset(u16),
     AppListDivider(bool),
+    AppListClickLast(bool),
     AppListHoverPopup(bool),
     AppListHoverDelay(u32),
     OpacityRequest(f32),
@@ -646,6 +647,11 @@ impl PageInner {
                     _ = c.set_show_divider(&h, enabled);
                 }
             }
+            Message::AppListClickLast(enabled) => {
+                if let Some((h, mut c)) = app_list_config() {
+                    _ = c.set_click_last_window(&h, enabled);
+                }
+            }
             Message::AppListHoverPopup(enabled) => {
                 if let Some((h, mut c)) = app_list_config() {
                     _ = c.set_hover_popup_delay_ms(&h, enabled.then_some(400));
@@ -723,6 +729,7 @@ pub fn recosmic<
         side_inset = fl!("recosmic", "side-inset");
         wing_inset = fl!("recosmic", "wing-inset");
         divider = fl!("recosmic", "divider");
+        click_last = fl!("recosmic", "click-last");
         hover_popup = fl!("recosmic", "hover-popup");
         hover_delay = fl!("recosmic", "hover-delay");
     });
@@ -785,6 +792,10 @@ pub fn recosmic<
                 .add(
                     settings::item::builder(&descriptions[divider])
                         .toggler(lista.show_divider, Message::AppListDivider),
+                )
+                .add(
+                    settings::item::builder(&descriptions[click_last])
+                        .toggler(lista.click_last_window, Message::AppListClickLast),
                 )
                 .add(
                     settings::item::builder(&descriptions[hover_popup]).toggler(

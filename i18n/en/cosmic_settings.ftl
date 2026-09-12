@@ -499,6 +499,7 @@ recosmic = ReCosmic
     .side-inset = Distance from the screen sides
     .app-list = App list
     .divider = Divider between pinned and open apps
+    .click-last = Click raises the last used window
     .hover-popup = Open the window list on hover
     .hover-delay = Hover delay
 

@@ -321,6 +321,7 @@ recosmic = ReCosmic
     .side-inset = Distância das laterais da tela
     .app-list = Lista de apps
     .divider = Divisor entre fixados e abertos
+    .click-last = Clique abre a última janela usada
     .hover-popup = Abrir a lista de janelas ao passar o mouse
     .hover-delay = Atraso do mouse
 
