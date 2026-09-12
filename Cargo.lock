@@ -1356,7 +1356,7 @@ dependencies = [
 [[package]]
 name = "cosmic-app-list-config"
 version = "1.0.15"
-source = "git+https://github.com/ReCosmicLabs/cosmic-applets?branch=main#1707310a5e52cf175d2fd6a38e7ab90c79d9e695"
+source = "git+https://github.com/ReCosmicLabs/cosmic-applets?branch=main#bc0f282d2a0afd71634a186e4d3fcb5850a76b1c"
 dependencies = [
  "libcosmic",
  "serde",
