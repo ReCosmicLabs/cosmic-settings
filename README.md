@@ -1,3 +1,27 @@
+# cosmic-settings (fork ReCosmicLabs)
+
+> **This is a fork of [pop-os/cosmic-settings](https://github.com/pop-os/cosmic-settings)**, the settings
+> app of the COSMIC desktop by [System76](https://system76.com). All credit for the app itself goes to
+> System76 and the upstream contributors. The license is unchanged: **GPL-3.0-only**.
+
+## Changes in this fork
+
+Maintained by [ReCosmicLabs](https://github.com/ReCosmicLabs) for the
+[dotfiles](https://github.com/eualexandrerrr/dotfiles) setup. Everything below is a modification of the
+original work, as required by section 5 of the GPL. The `recosmic` branch holds these patches rebased
+on top of upstream; `master` is an untouched mirror.
+
+- **ReCosmic section in the Panel page** (`cosmic-settings/src/pages/desktop/panel/`). Adds graphical
+  controls for the keys that only exist in this org's forks: `background_per_group`, `exclusive_gap`
+  and `side_inset` (from [cosmic-panel](https://github.com/ReCosmicLabs/cosmic-panel)), plus
+  `show_divider` and `hover_popup_delay_ms` (from
+  [cosmic-applets](https://github.com/ReCosmicLabs/cosmic-applets)). Strings in `i18n/en` and `i18n/pt-BR`.
+- The two config crates come from this org's forks instead of upstream, so the new fields exist.
+
+---
+
+Original README follows.
+
 # COSMIC Settings
 
 The settings application for the [COSMIC desktop environment][cosmic-epoch].

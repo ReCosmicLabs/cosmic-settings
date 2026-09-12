@@ -23,6 +23,7 @@ cosmic-comp-config = { workspace = true, optional = true }
 cosmic-config.workspace = true
 cosmic-idle-config.workspace = true
 cosmic-panel-config = { workspace = true, optional = true }
+cosmic-app-list-config = { workspace = true, optional = true }
 cosmic-protocols = { git = "https://github.com/pop-os/cosmic-protocols", optional = true }
 cosmic-randr-shell.workspace = true
 cosmic-randr = { workspace = true, optional = true }
@@ -193,6 +194,6 @@ cosmic-comp-config = ["dep:cosmic-comp-config"]
 dbus-config = ["libcosmic/dbus-config", "cosmic-config/dbus"]
 single-instance = ["libcosmic/single-instance"]
 test = []
-wayland = ["libcosmic/wayland", "dep:cosmic-panel-config", "dep:cosmic-randr", "iced_winit/wayland"]
+wayland = ["libcosmic/wayland", "dep:cosmic-panel-config", "dep:cosmic-app-list-config", "dep:cosmic-randr", "iced_winit/wayland"]
 wgpu = ["libcosmic/wgpu"]
 xdg-portal = ["ashpd", "libcosmic/xdg-portal"]

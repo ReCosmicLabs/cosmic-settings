@@ -490,6 +490,17 @@ panel-missing = Panel configuration is missing
     .desc = The panel configuration file is missing due to use of a custom configuration or it is corrupted.
     .fix = Reset to default
 
+## ReCosmic
+
+recosmic = ReCosmic
+    .per-group = Background only behind each group
+    .exclusive-gap = Gap from maximized windows
+    .side-inset = Distance from the screen sides
+    .app-list = App list
+    .divider = Divider between pinned and open apps
+    .hover-popup = Open the window list on hover
+    .hover-delay = Hover delay
+
 ## Desktop: Dock
 
 dock = Dock

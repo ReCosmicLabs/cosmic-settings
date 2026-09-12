@@ -312,6 +312,17 @@ panel-missing = Configuração do painel está ausente
     .desc = O arquivo de configuração do painel está ausente devido ao uso de uma configuração personalizada ou porque o arquivo está corrompido.
     .fix = Redefinir para padrão
 
+## ReCosmic
+
+recosmic = ReCosmic
+    .per-group = Fundo só atrás de cada grupo
+    .exclusive-gap = Distância das janelas maximizadas
+    .side-inset = Distância das laterais da tela
+    .app-list = Lista de apps
+    .divider = Divisor entre fixados e abertos
+    .hover-popup = Abrir a lista de janelas ao passar o mouse
+    .hover-delay = Atraso do mouse
+
 ## Desktop: Dock
 
 dock = Dock

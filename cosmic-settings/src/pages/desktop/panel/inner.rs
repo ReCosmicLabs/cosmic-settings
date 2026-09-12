@@ -9,6 +9,7 @@ use cosmic::{Element, Task, surface};
 
 use cosmic::Apply;
 use cosmic_config::ConfigSet;
+use cosmic_app_list_config::{APP_ID as APP_LIST_ID, AppListConfig};
 use cosmic_panel_config::{
     AutoHide, CosmicPanelBackground, CosmicPanelConfig, CosmicPanelContainerConfig,
     CosmicPanelOuput, PanelAnchor, PanelSize,
@@ -424,6 +425,12 @@ pub enum Message {
     PanelSizeCommit,
     Appearance(usize),
     ExtendToEdge(bool),
+    BackgroundPerGroup(bool),
+    ExclusiveGap(u16),
+    SideInset(u16),
+    AppListDivider(bool),
+    AppListHoverPopup(bool),
+    AppListHoverDelay(u32),
     OpacityRequest(f32),
     OpacityApply,
     OutputAdded(String, WlOutput),
@@ -621,6 +628,30 @@ impl PageInner {
                 };
                 _ = panel_config.set_border_radius(helper, new_radius).unwrap();
             }
+            Message::BackgroundPerGroup(enabled) => {
+                _ = panel_config.set_background_per_group(helper, enabled);
+            }
+            Message::ExclusiveGap(px) => {
+                _ = panel_config.set_exclusive_gap(helper, px);
+            }
+            Message::SideInset(px) => {
+                _ = panel_config.set_side_inset(helper, px);
+            }
+            Message::AppListDivider(enabled) => {
+                if let Some((h, mut c)) = app_list_config() {
+                    _ = c.set_show_divider(&h, enabled);
+                }
+            }
+            Message::AppListHoverPopup(enabled) => {
+                if let Some((h, mut c)) = app_list_config() {
+                    _ = c.set_hover_popup_delay_ms(&h, enabled.then_some(400));
+                }
+            }
+            Message::AppListHoverDelay(ms) => {
+                if let Some((h, mut c)) = app_list_config() {
+                    _ = c.set_hover_popup_delay_ms(&h, Some(ms));
+                }
+            }
             Message::OpacityRequest(opacity) => {
                 panel_config.opacity = opacity;
 
@@ -665,4 +696,121 @@ impl PageInner {
 
         Task::none()
     }
+}
+
+/// Config do cosmic-app-list. Vive fora do CosmicPanelConfig, entao e lido na hora de mexer.
+pub(crate) fn app_list_config() -> Option<(cosmic_config::Config, AppListConfig)> {
+    let helper = cosmic_config::Config::new(APP_LIST_ID, AppListConfig::VERSION).ok()?;
+    let config = AppListConfig::get_entry(&helper).unwrap_or_else(|(_, c)| c);
+    Some((helper, config))
+}
+
+/// Secao com as chaves que so existem nos forks do ReCosmic.
+pub fn recosmic<
+    P: page::Page<crate::pages::Message> + PanelPage,
+    T: Fn(Message) -> crate::pages::Message + Copy + Send + Sync + 'static,
+>(
+    _p: &P,
+    _msg_map: T,
+) -> Section<crate::pages::Message> {
+    crate::slab!(descriptions {
+        per_group = fl!("recosmic", "per-group");
+        exclusive_gap = fl!("recosmic", "exclusive-gap");
+        side_inset = fl!("recosmic", "side-inset");
+        divider = fl!("recosmic", "divider");
+        hover_popup = fl!("recosmic", "hover-popup");
+        hover_delay = fl!("recosmic", "hover-delay");
+    });
+
+    Section::default()
+        .title(fl!("recosmic"))
+        .descriptions(descriptions)
+        .view::<P>(move |_binder, page, section| {
+            let descriptions = &section.descriptions;
+            let inner = page.inner();
+            let Some(panel_config) = inner.panel_config.as_ref() else {
+                return Element::from(text::body(fl!("unknown")));
+            };
+            let lista = app_list_config().map(|(_, c)| c).unwrap_or_default();
+            let hover_ms = lista.hover_popup_delay_ms.unwrap_or(400);
+
+            let pixels = |valor: u16, faixa: std::ops::RangeInclusive<u16>, msg: fn(u16) -> Message| {
+                row::with_capacity(2)
+                    .align_y(Alignment::Center)
+                    .spacing(8)
+                    .width(Length::Fill)
+                    .push(
+                        text::body(fl!(
+                            "number",
+                            HashMap::from_iter(vec![("number", i32::from(valor))])
+                        ))
+                        .width(Length::Fixed(22.0))
+                        .align_x(Alignment::Center),
+                    )
+                    .push(
+                        slider(faixa, valor, msg)
+                            .width(Length::Fill)
+                            .apply(container)
+                            .max_width(250),
+                    )
+            };
+
+            let mut secao = settings::section()
+                .title(&section.title)
+                .add(
+                    settings::item::builder(&descriptions[per_group])
+                        .toggler(panel_config.background_per_group, Message::BackgroundPerGroup),
+                )
+                .add(
+                    settings::item::builder(&descriptions[exclusive_gap])
+                        .flex_control(pixels(panel_config.exclusive_gap, 0..=32, Message::ExclusiveGap)),
+                );
+            if panel_config.background_per_group {
+                secao = secao.add(
+                    settings::item::builder(&descriptions[side_inset])
+                        .flex_control(pixels(panel_config.side_inset, 0..=64, Message::SideInset)),
+                );
+            }
+            secao = secao
+                .add(
+                    settings::item::builder(&descriptions[divider])
+                        .toggler(lista.show_divider, Message::AppListDivider),
+                )
+                .add(
+                    settings::item::builder(&descriptions[hover_popup]).toggler(
+                        lista.hover_popup_delay_ms.is_some(),
+                        Message::AppListHoverPopup,
+                    ),
+                );
+            if lista.hover_popup_delay_ms.is_some() {
+                secao = secao.add(settings::item::builder(&descriptions[hover_delay]).flex_control(
+                    row::with_capacity(2)
+                        .align_y(Alignment::Center)
+                        .spacing(8)
+                        .width(Length::Fill)
+                        .push(
+                            text::body(fl!(
+                                "number",
+                                HashMap::from_iter(vec![("number", hover_ms as i32)])
+                            ))
+                            .width(Length::Fixed(34.0))
+                            .align_x(Alignment::Center),
+                        )
+                        .push(
+                            slider(0..=1500u32, hover_ms, Message::AppListHoverDelay)
+                                .step(50u32)
+                                .width(Length::Fill)
+                                .apply(container)
+                                .max_width(250),
+                        ),
+                ));
+            }
+            secao.apply(Element::from).map(msg_map_of(_msg_map))
+        })
+}
+
+fn msg_map_of<T: Fn(Message) -> crate::pages::Message + Copy>(
+    f: T,
+) -> impl Fn(Message) -> crate::pages::Message + Copy {
+    f
 }

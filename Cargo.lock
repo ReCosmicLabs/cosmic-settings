@@ -1354,6 +1354,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "cosmic-app-list-config"
+version = "1.0.15"
+source = "git+https://github.com/ReCosmicLabs/cosmic-applets?branch=recosmic#9e058db8cbeddc5409bf6063123784ad49208b4c"
+dependencies = [
+ "libcosmic",
+ "serde",
+]
+
+[[package]]
 name = "cosmic-bg-config"
 version = "1.0.3"
 source = "git+https://github.com/pop-os/cosmic-bg#1685f7fc99cbb9cbe981ac672d6451ba6faff7db"
@@ -1467,6 +1476,20 @@ dependencies = [
 [[package]]
 name = "cosmic-panel-config"
 version = "0.1.0"
+source = "git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic#0789cce9d704b9af8df2c9abfd4c570186dc9036"
+dependencies = [
+ "anyhow",
+ "cosmic-config",
+ "serde",
+ "smithay-client-toolkit",
+ "tracing",
+ "wayland-protocols-wlr",
+ "xdg-shell-wrapper-config 0.1.0 (git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic)",
+]
+
+[[package]]
+name = "cosmic-panel-config"
+version = "0.1.0"
 source = "git+https://github.com/pop-os/cosmic-panel#3c08c30c2d77afb5130bbc42a74f479979b372dd"
 dependencies = [
  "anyhow",
@@ -1475,7 +1498,7 @@ dependencies = [
  "smithay-client-toolkit",
  "tracing",
  "wayland-protocols-wlr",
- "xdg-shell-wrapper-config",
+ "xdg-shell-wrapper-config 0.1.0 (git+https://github.com/pop-os/cosmic-panel)",
 ]
 
 [[package]]
@@ -1527,12 +1550,13 @@ dependencies = [
  "chrono",
  "clap",
  "color-eyre",
+ "cosmic-app-list-config",
  "cosmic-bg-config",
  "cosmic-comp-config",
  "cosmic-config",
  "cosmic-idle-config",
  "cosmic-mime-apps",
- "cosmic-panel-config",
+ "cosmic-panel-config 0.1.0 (git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic)",
  "cosmic-protocols",
  "cosmic-randr",
  "cosmic-randr-shell",
@@ -4590,6 +4614,7 @@ dependencies = [
  "cosmic-client-toolkit",
  "cosmic-config",
  "cosmic-freedesktop-icons",
+ "cosmic-panel-config 0.1.0 (git+https://github.com/pop-os/cosmic-panel)",
  "cosmic-settings-config",
  "cosmic-settings-daemon",
  "cosmic-theme",
@@ -9053,6 +9078,15 @@ name = "xdg"
 version = "3.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2fb433233f2df9344722454bc7e96465c9d03bff9d77c248f9e7523fe79585b5"
+
+[[package]]
+name = "xdg-shell-wrapper-config"
+version = "0.1.0"
+source = "git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic#0789cce9d704b9af8df2c9abfd4c570186dc9036"
+dependencies = [
+ "serde",
+ "wayland-protocols-wlr",
+]
 
 [[package]]
 name = "xdg-shell-wrapper-config"
