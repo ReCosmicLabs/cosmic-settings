@@ -500,6 +500,7 @@ recosmic = ReCosmic
     .app-list = App list
     .divider = Divider between pinned and open apps
     .click-last = Click raises the last used window
+    .title-badge = Unread counter on the icon
     .hover-popup = Open the window list on hover
     .hover-delay = Hover delay
 

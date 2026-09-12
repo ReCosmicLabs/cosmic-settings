@@ -322,6 +322,7 @@ recosmic = ReCosmic
     .app-list = Lista de apps
     .divider = Divisor entre fixados e abertos
     .click-last = Clique abre a última janela usada
+    .title-badge = Contador de não lidas no ícone
     .hover-popup = Abrir a lista de janelas ao passar o mouse
     .hover-delay = Atraso do mouse
 
