@@ -428,6 +428,7 @@ pub enum Message {
     BackgroundPerGroup(bool),
     ExclusiveGap(u16),
     SideInset(u16),
+    WingInset(u16),
     AppListDivider(bool),
     AppListHoverPopup(bool),
     AppListHoverDelay(u32),
@@ -637,6 +638,9 @@ impl PageInner {
             Message::SideInset(px) => {
                 _ = panel_config.set_side_inset(helper, px);
             }
+            Message::WingInset(px) => {
+                _ = panel_config.set_wing_inset(helper, px);
+            }
             Message::AppListDivider(enabled) => {
                 if let Some((h, mut c)) = app_list_config() {
                     _ = c.set_show_divider(&h, enabled);
@@ -717,6 +721,7 @@ pub fn recosmic<
         per_group = fl!("recosmic", "per-group");
         exclusive_gap = fl!("recosmic", "exclusive-gap");
         side_inset = fl!("recosmic", "side-inset");
+        wing_inset = fl!("recosmic", "wing-inset");
         divider = fl!("recosmic", "divider");
         hover_popup = fl!("recosmic", "hover-popup");
         hover_delay = fl!("recosmic", "hover-delay");
@@ -766,10 +771,15 @@ pub fn recosmic<
                         .flex_control(pixels(panel_config.exclusive_gap, 0..=32, Message::ExclusiveGap)),
                 );
             if panel_config.background_per_group {
-                secao = secao.add(
-                    settings::item::builder(&descriptions[side_inset])
-                        .flex_control(pixels(panel_config.side_inset, 0..=64, Message::SideInset)),
-                );
+                secao = secao
+                    .add(
+                        settings::item::builder(&descriptions[side_inset])
+                            .flex_control(pixels(panel_config.side_inset, 0..=64, Message::SideInset)),
+                    )
+                    .add(
+                        settings::item::builder(&descriptions[wing_inset])
+                            .flex_control(pixels(panel_config.wing_inset, 0..=20, Message::WingInset)),
+                    );
             }
             secao = secao
                 .add(

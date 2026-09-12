@@ -317,6 +317,7 @@ panel-missing = Configuração do painel está ausente
 recosmic = ReCosmic
     .per-group = Fundo só atrás de cada grupo
     .exclusive-gap = Distância das janelas maximizadas
+    .wing-inset = Grupos das laterais mais finos
     .side-inset = Distância das laterais da tela
     .app-list = Lista de apps
     .divider = Divisor entre fixados e abertos

@@ -12,11 +12,13 @@ original work, as required by section 5 of the GPL. The `recosmic` branch holds 
 on top of upstream; `master` is an untouched mirror.
 
 - **ReCosmic section in the Panel page** (`cosmic-settings/src/pages/desktop/panel/`). Adds graphical
-  controls for the keys that only exist in this org's forks: `background_per_group`, `exclusive_gap`
-  and `side_inset` (from [cosmic-panel](https://github.com/ReCosmicLabs/cosmic-panel)), plus
+  controls for the keys that only exist in this org's forks: `background_per_group`, `exclusive_gap`,
+  `side_inset` and `wing_inset` (from [cosmic-panel](https://github.com/ReCosmicLabs/cosmic-panel)), plus
   `show_divider` and `hover_popup_delay_ms` (from
   [cosmic-applets](https://github.com/ReCosmicLabs/cosmic-applets)). Strings in `i18n/en` and `i18n/pt-BR`.
-- The two config crates come from this org's forks instead of upstream, so the new fields exist.
+- The two config crates come from this org's forks instead of upstream, so the new fields exist. Their
+  commit is pinned by hand in `Cargo.lock`: a plain `cargo update` would drag libcosmic to a newer
+  revision than the one upstream pins here and the build breaks.
 
 ---
 

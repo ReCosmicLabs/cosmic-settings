@@ -495,6 +495,7 @@ panel-missing = Panel configuration is missing
 recosmic = ReCosmic
     .per-group = Background only behind each group
     .exclusive-gap = Gap from maximized windows
+    .wing-inset = Thinner side groups
     .side-inset = Distance from the screen sides
     .app-list = App list
     .divider = Divider between pinned and open apps

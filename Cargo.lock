@@ -1476,7 +1476,7 @@ dependencies = [
 [[package]]
 name = "cosmic-panel-config"
 version = "0.1.0"
-source = "git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic#0789cce9d704b9af8df2c9abfd4c570186dc9036"
+source = "git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic#e39146fc9f1320dfb7c1ec41906e7e99cebc5b0e"
 dependencies = [
  "anyhow",
  "cosmic-config",
@@ -9082,7 +9082,7 @@ checksum = "2fb433233f2df9344722454bc7e96465c9d03bff9d77c248f9e7523fe79585b5"
 [[package]]
 name = "xdg-shell-wrapper-config"
 version = "0.1.0"
-source = "git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic#0789cce9d704b9af8df2c9abfd4c570186dc9036"
+source = "git+https://github.com/ReCosmicLabs/cosmic-panel?branch=recosmic#e39146fc9f1320dfb7c1ec41906e7e99cebc5b0e"
 dependencies = [
  "serde",
  "wayland-protocols-wlr",
